@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<footer th:fragment="footer" class="app-footer text-center py-3 text-muted small">
+    &copy; <span th:text="${#temporals.year(#temporals.createNow())}">2026</span> Student Registration System &mdash; Built with Spring Boot, Thymeleaf &amp; Bootstrap 5
+</footer>
+</body>
+</html>

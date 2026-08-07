@@ -1,0 +1,152 @@
+:root {
+    --brand-primary: #4e5df3;
+    --brand-primary-dark: #3a47c9;
+    --sidebar-width: 240px;
+}
+
+body {
+    background-color: #f4f6fb;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* ===== Top Navbar ===== */
+.top-navbar {
+    background: linear-gradient(90deg, var(--brand-primary), var(--brand-primary-dark));
+    height: 60px;
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+}
+
+/* ===== Layout ===== */
+.app-layout {
+    display: flex;
+    min-height: calc(100vh - 60px);
+}
+
+.sidebar {
+    width: var(--sidebar-width);
+    background-color: #ffffff;
+    border-right: 1px solid #e9ecef;
+    flex-shrink: 0;
+}
+
+.sidebar .nav-link {
+    color: #495057;
+    padding: 0.65rem 1.25rem;
+    border-radius: 0;
+    font-weight: 500;
+}
+
+.sidebar .nav-link:hover {
+    background-color: #f1f2fd;
+    color: var(--brand-primary);
+}
+
+.sidebar .nav-link.active {
+    background-color: var(--brand-primary);
+    color: #fff;
+}
+
+.main-content {
+    flex: 1;
+    min-width: 0;
+}
+
+/* ===== Auth pages ===== */
+.auth-body {
+    background: linear-gradient(135deg, #4e5df3 0%, #3a47c9 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+}
+
+.auth-wrapper {
+    width: 100%;
+    max-width: 460px;
+}
+
+.auth-card {
+    border-radius: 16px;
+}
+
+/* ===== Dashboard stat cards ===== */
+.stat-card {
+    border: none;
+    border-radius: 14px;
+    color: #fff;
+    overflow: hidden;
+}
+
+.stat-card .card-body {
+    position: relative;
+    z-index: 1;
+}
+
+.stat-icon {
+    font-size: 2rem;
+    opacity: 0.5;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+.stat-value {
+    font-size: 1.9rem;
+    font-weight: 700;
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    opacity: 0.9;
+}
+
+.stat-primary { background: linear-gradient(135deg, #4e5df3, #3a47c9); }
+.stat-success { background: linear-gradient(135deg, #2ecc71, #27ae60); }
+.stat-info { background: linear-gradient(135deg, #17a2b8, #0d8aa0); }
+.stat-warning { background: linear-gradient(135deg, #f5a623, #e08e0b); }
+
+/* ===== Avatars & photos ===== */
+.avatar-sm {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+
+.photo-preview {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border: 3px solid #f1f2fd;
+}
+
+/* ===== Misc ===== */
+.sort-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.sort-link:hover {
+    color: var(--brand-primary);
+}
+
+.app-footer {
+    border-top: 1px solid #e9ecef;
+    background-color: #fff;
+}
+
+@media (max-width: 991.98px) {
+    .sidebar {
+        position: fixed;
+        top: 60px;
+        left: -240px;
+        height: calc(100vh - 60px);
+        transition: left 0.25s ease-in-out;
+        z-index: 1020;
+    }
+    .sidebar.show {
+        left: 0;
+    }
+}
