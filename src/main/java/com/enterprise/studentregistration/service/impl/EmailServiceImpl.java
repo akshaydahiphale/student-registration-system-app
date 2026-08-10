@@ -1,5 +1,4 @@
 package com.enterprise.studentregistration.service.impl;
-
 import com.enterprise.studentregistration.service.EmailService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,19 +11,17 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 @Slf4j
 public class EmailServiceImpl implements EmailService {
-
     private final JavaMailSender mailSender;
-
     @Value("${app.mail.from}")
     private String fromAddress;
-
     @Value("${app.mail.admin}")
     private String adminEmail;
+    @Value("${app.base-url}")
+    private String baseUrl;
 
     @Override
     public void sendPasswordResetEmail(String toEmail, String username, String resetToken) {
-        String resetLink = "http://localhost:8080/reset-password?token=" + resetToken;
-
+        String resetLink = baseUrl + "/reset-password?token=" + resetToken;
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(fromAddress);
         message.setTo(toEmail);
@@ -35,7 +32,6 @@ public class EmailServiceImpl implements EmailService {
                 + resetLink + "\n\n"
                 + "If you did not request this, please ignore this email.\n\n"
                 + "Regards,\nStudent Registration System");
-
         try {
             mailSender.send(message);
             log.info("Password reset email sent to {}", toEmail);
@@ -53,9 +49,8 @@ public class EmailServiceImpl implements EmailService {
         message.setText("Hello " + username + ",\n\n"
                 + "Good news! Your registration has been approved by the admin.\n"
                 + "You can now log in using your username and password at:\n\n"
-                + "http://localhost:8080/login\n\n"
+                + baseUrl + "/login\n\n"
                 + "Regards,\nStudent Registration System");
-
         try {
             mailSender.send(message);
             log.info("Approval email sent to {}", toEmail);
@@ -74,9 +69,8 @@ public class EmailServiceImpl implements EmailService {
                 + "Username: " + studentUsername + "\n"
                 + "Email: " + studentEmail + "\n\n"
                 + "Please review and approve at:\n"
-                + "http://localhost:8080/users/pending\n\n"
+                + baseUrl + "/users/pending\n\n"
                 + "Regards,\nStudent Registration System");
-
         try {
             mailSender.send(message);
             log.info("New registration notification sent to admin for '{}'", studentUsername);
