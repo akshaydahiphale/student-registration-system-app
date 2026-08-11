@@ -46,9 +46,7 @@ public class AuthController {
             return "forgot-password";
         }
         try {
-            String token = userService.initiatePasswordReset(forgotPasswordDTO);
-            model.addAttribute("token", token);
-            model.addAttribute("resetLink", "/reset-password?token=" + token);
+            userService.initiatePasswordReset(forgotPasswordDTO);
             return "forgot-password-confirmation";
         } catch (ResourceNotFoundException e) {
             model.addAttribute("errorMessage", e.getMessage());
